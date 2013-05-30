@@ -1,0 +1,10 @@
+{
+  "name": "newrelic-irc",
+  "description": "Notify IRC when New Relic posts an event.",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.1.1",
+    "ircb": "~0.2.0"
+  }
+}

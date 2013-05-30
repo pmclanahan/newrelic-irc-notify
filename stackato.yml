@@ -1,0 +1,10 @@
+name: newrelic-irc-notify
+framework:
+  type: node
+mem: 128M
+min_version:
+  client: 1.4.3
+processes:
+  web: node app.js
+ignores:
+  - .git
