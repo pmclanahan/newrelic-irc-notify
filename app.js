@@ -75,10 +75,10 @@ function getIRCChannelsList() {
 function tellIRC(pingType, data) {
     var irc_color = pingType === 'alert' ? 'light_red' : 'light_green';
     var notified = false;
-    for (var name_re in irc_channels) {
-        var name_rex = new RegExp(name_re);
-        if (name_rex.test(data.application_name)) {
-            notified = true
+    for (var app_name in irc_channels) {
+        if (data.application_name.indexOf(app_name) !== -1 &&
+                irc_channels[app_name].types.indexOf(pingType) !== -1) {
+            notified = true;
             var message = IRC.colors.wrap(irc_color, 'NR ' + pingType.toUpperCase()) + ': ';
             if (data.description) {
                 message += data.description;
@@ -90,10 +90,10 @@ function tellIRC(pingType, data) {
                 message += '. ' + data.alert_url;
             }
             if (config.dev) {
-                irc.say(config.dev_channel, irc_channels[name_re].channels.toString() + ' ' + message);
+                irc.say(config.dev_channel, irc_channels[app_name].channels.toString() + ' ' + message);
             }
             else {
-                irc_channels[name_re].channels.forEach(function(channel) {
+                irc_channels[app_name].channels.forEach(function(channel) {
                     irc.say(channel, message);
                 });
             }

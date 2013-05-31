@@ -14,19 +14,20 @@ Clone the repo then:
 For my fellow mozillians, all you really need to do is send me a PR with edits
 to `irc_channels.json`. The setup on our New Relic account is already done.
 
-`irc_channels.json` is a mapping of a string (that will be interpreted
-as a regex) to a list of IRC channels. For example:
+`irc_channels.json` is a mapping of a string to a list of IRC channels. For example:
 
 ```json
 {
-    "^www\.mozilla\.org": {
-        "channels": ["#www"]
+    "www.mozilla.org": {
+        "channels": ["#www"],
+        "types": ["alert", "deployment"]
     }
 }
 ```
 
 That tells the bot to look for posts from New Relic with an application name that
-matches the regex (e.g. "www.mozilla.org-python"), and to send the info to #www.
+includes the string (e.g. "www.mozilla.org-python"), and to send the info to #www
+if the type of message is an "alert" or a "deployment".
 
 The bot's name by default is `vectorvictor`, and he'll join any room in any
 `channels` list in this file.

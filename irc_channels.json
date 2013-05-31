@@ -1,8 +1,10 @@
 {
-    "^www\.mozilla\.org": {
-        "channels": ["#www"]
+    "www.mozilla.org": {
+        "channels": ["#www"],
+        "types": ["alert", "deployment"]
     },
-    "^basket\.mozilla\.org": {
-        "channels": ["#www"]
+    "basket.mozilla.org": {
+        "channels": ["#www"],
+        "types": ["alert", "deployment"]
     }
 }

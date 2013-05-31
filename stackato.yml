@@ -8,3 +8,6 @@ processes:
   web: node app.js
 ignores:
   - .git
+  - local.json*
+  - Procfile
+  - node_modules
