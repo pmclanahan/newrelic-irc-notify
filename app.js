@@ -2,20 +2,30 @@
 
 var express = require('express');
 var irc_channels = require('./irc_channels.json');
-var ircb = require('ircb');
+var nconf = require('nconf');
+var IRC = require('irc');
 
-var config = {
-    port: process.env.PORT || 3000
-};
+nconf.argv().env(['PORT', 'nick']);
+nconf.file({ file: 'local.json' });
+nconf.defaults({
+    PORT: 3000,
+    nick: 'vectorvictor',
+    dev: false
+});
+
+var config = nconf.get();
 
 var app = express();
-var irc = ircb({
-    host: 'irc.mozilla.org',
+var irc = new IRC.Client('irc.mozilla.org', config.nick, {
     secure: true,
-    nick: 'vectorvictor',
-    username: 'vectorvictor',
+    port: 6697,
+    userName: config.nick,
     realName: 'New Relic IRC Notification Bot',
     channels: getIRCChannelsList()
+});
+
+irc.addListener('error', function(message) {
+    console.log('error: ', message);
 });
 
 app.use(express.bodyParser());
@@ -23,7 +33,7 @@ app.use(express.bodyParser());
 app.post('/', function(req, res) {
     var pingType = req.body.hasOwnProperty('alert') ? 'alert' : 'deployment';
     var data = JSON.parse(req.body[pingType]);
-    tellIRC(data);
+    tellIRC(pingType, data);
     res.send('Got it. Thanks.');
 });
 
@@ -32,7 +42,10 @@ app.get('/', function(req, res) {
 });
 
 function getIRCChannelsList() {
-    var channels = ['#pmac-bot-test'];
+    var channels = [];
+    if (config.dev) {
+        channels.push(config.dev_channel);
+    }
     for (var site in irc_channels) {
         irc_channels[site].channels.forEach(function(channel) {
             if (channels.indexOf(channel) === -1) {
@@ -43,11 +56,14 @@ function getIRCChannelsList() {
     return channels;
 }
 
-function tellIRC(data) {
+function tellIRC(pingType, data) {
+    var irc_color = pingType === 'alert' ? 'light_red' : 'light_green';
+    var notified = false;
     for (var name_re in irc_channels) {
         var name_rex = new RegExp(name_re);
         if (name_rex.test(data.application_name)) {
-            var message = '';
+            notified = true
+            var message = IRC.colors.wrap(irc_color, 'NR ' + pingType.toUpperCase()) + ': ';
             if (data.description) {
                 message += data.description;
             }
@@ -55,19 +71,25 @@ function tellIRC(data) {
                 message += data.long_description;
             }
             if (data.alert_url) {
-                message += ': ' + data.alert_url;
+                message += '. ' + data.alert_url;
             }
-            irc_channels[name_re].channels.forEach(function(channel) {
-                irc.say(channel, message);
-            });
+            if (config.dev) {
+                irc.say(config.dev_channel, irc_channels[name_re].channels.toString() + ' ' + message);
+            }
+            else {
+                irc_channels[name_re].channels.forEach(function(channel) {
+                    irc.say(channel, message);
+                });
+            }
+
         }
-        else {
-            console.log('IGNORED: ' + data.application_name);
-        }
+    }
+    if (!notified) {
+        console.log('IGNORED: ' + data.application_name);
     }
 }
 
 if (!module.parent) {
-    app.listen(config.port);
-    console.log('Express server listening on port ' + config.port);
+    app.listen(config.PORT);
+    console.log('Express server listening on port ' + config.PORT);
 }
