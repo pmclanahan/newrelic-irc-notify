@@ -1,11 +1,32 @@
 {
-  "name": "newrelic-irc-notify",
-  "description": "Notify IRC when New Relic posts an event.",
-  "version": "0.0.2",
-  "private": true,
-  "dependencies": {
-    "express": "3.1.1",
-    "irc": "~0.3.6",
-    "nconf": "~0.6.7"
-  }
+    "name": "newrelic-irc-notify",
+    "description": "Notify IRC when New Relic posts an event.",
+    "version": "0.0.2",
+    "private": true,
+    "maintainers": [
+        {
+            "name": "Paul McLanahan",
+            "email": "pmac@mozilla.com",
+            "web": "http://pmac.io"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "apache2",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/pmclanahan/newrelic-irc-notify.git"
+        }
+    ],
+    "bugs": "https://github.com/pmclanahan/newrelic-irc-notify/issues",
+    "homepage": "https://github.com/pmclanahan/newrelic-irc-notify/",
+    "dependencies": {
+        "express": "3.1.1",
+        "irc": "~0.3.6",
+        "nconf": "~0.6.7"
+    }
 }
