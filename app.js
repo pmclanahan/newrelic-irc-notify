@@ -141,7 +141,7 @@ function tellIRC(pingType, data) {
                 irc_channels[app_name].types.indexOf(pingType) !== -1) {
             notified = true;
             var message = IRC.colors.wrap(irc_color, 'NR_' + pingType.toUpperCase()) + ': ';
-            message += data.long_description || data.description;
+            message += (data.long_description || data.description);
             if (data[pingType + '_url']) {
                 message += '. ' + data[pingType + '_url'];
             }
@@ -159,7 +159,7 @@ function tellIRC(pingType, data) {
     if (!notified) {
         console.log('IGNORED: ' + data.application_name);
         if (config.log_channel) {
-            irc.say(config.log_channel, 'IGNORED: ' + data.description || data.long_description)
+            irc.say(config.log_channel, 'IGNORED: ' + (data.long_description || data.description));
         }
     }
 }
