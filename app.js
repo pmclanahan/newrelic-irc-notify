@@ -21,13 +21,11 @@ var irc_channels = require('./irc_channels.json');
 var nconf = require('nconf');
 var IRC = require('irc');
 
-nconf.argv().env(['PORT', 'nick']);
-nconf.file({ file: 'local.json' });
 nconf.defaults({
     PORT: 3000,
     nick: 'vectorvictor',
     dev: false
-});
+}).argv().env().file({ file: 'local.json' });
 
 var config = nconf.get();
 
@@ -48,6 +46,9 @@ irc.on('registered', function(message) {
     // Store the nickname assigned by the server
     config.realNick = message.args[0];
     console.info('Using nickname: ' + config.realNick);
+    if (config.log_channel) {
+        irc.say(config.log_channel, 'Looks like I picked the wrong week to quit sniffing glue.');
+    }
 });
 
 // via https://github.com/mythmon/standup-irc/blob/master/standup-irc.js
@@ -62,6 +63,9 @@ irc.on('error', function(error) {
     if (error.hasOwnProperty('stack')) {
         console.error(error.stack);
     }
+    if (config.log_channel) {
+        irc.say(config.log_channel, error);
+    }
 });
 
 /* Receive, parse, and handle messages from IRC.
@@ -72,9 +76,24 @@ irc.on('error', function(error) {
  * - `message`: The text of the message sent.
  */
 irc.on('message', function(user, channel, message){
-    var pingRe = new RegExp('^' + config.realNick + '[:,]? +ping$', 'i');
-    if (pingRe.test(message)) {
-        irc.say(channel, user + ': roger roger.');
+    if (message.toLowerCase().indexOf('surely') !== -1) {
+        irc.say(channel, user + ": don't call me Shirley.");
+    }
+    var cmdRe = new RegExp('^' + config.realNick + '[:,]? +(.*)$', 'i');
+    var match = cmdRe.exec(message);
+    if (match) {
+        var cmd = match[1].trim();
+        switch (cmd) {
+            case 'ping':
+                irc.say(channel, user + ': roger roger');
+                break;
+            case 'help':
+                irc.say(channel, user + ': see https://github.com/pmclanahan/newrelic-irc-notify#readme');
+                break;
+            default:
+                irc.say(channel, user + ': Looks like I picked the wrong week to stop drinking');
+        }
+
     }
 });
 
@@ -88,7 +107,7 @@ app.post('/', function(req, res) {
 });
 
 app.get('/', function(req, res) {
-    res.send('Nothing to see here. Move along.');
+    res.send('<html><body><p>See <a href="https://github.com/pmclanahan/newrelic-irc-notify#readme">New Relic IRC Notify</a> for details.</p></body></html>');
 });
 
 function getIRCChannelsList() {
@@ -96,10 +115,13 @@ function getIRCChannelsList() {
     if (config.dev) {
         channels.push(config.dev_channel);
     }
+    else if (config.log_channel) {
+        channels.push(config.log_channel);
+    }
     for (var site in irc_channels) {
         irc_channels[site].channels.forEach(function(channel) {
             if (channels.indexOf(channel) === -1) {
-                channels.push(channel)
+                channels.push(channel);
             }
         })
     }
@@ -114,12 +136,7 @@ function tellIRC(pingType, data) {
                 irc_channels[app_name].types.indexOf(pingType) !== -1) {
             notified = true;
             var message = IRC.colors.wrap(irc_color, 'NR_' + pingType.toUpperCase()) + ': ';
-            if (data.description) {
-                message += data.description;
-            }
-            else if (data.long_description) {
-                message += data.long_description;
-            }
+            message += data.description || data.long_description;
             if (data.alert_url) {
                 message += '. ' + data.alert_url;
             }
@@ -136,6 +153,10 @@ function tellIRC(pingType, data) {
     }
     if (!notified) {
         console.log('IGNORED: ' + data.application_name);
+        if (config.log_channel) {
+            irc.say(config.log_channel, 'IGNORED: ' + pingType + ' from ' + data.application_name)
+            irc.say(config.log_channel, data.description || data.long_description)
+        }
     }
 }
 
