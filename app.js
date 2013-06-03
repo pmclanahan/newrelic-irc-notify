@@ -113,7 +113,7 @@ function tellIRC(pingType, data) {
         if (data.application_name.indexOf(app_name) !== -1 &&
                 irc_channels[app_name].types.indexOf(pingType) !== -1) {
             notified = true;
-            var message = IRC.colors.wrap(irc_color, 'NR ' + pingType.toUpperCase()) + ': ';
+            var message = IRC.colors.wrap(irc_color, 'NR_' + pingType.toUpperCase()) + ': ';
             if (data.description) {
                 message += data.description;
             }
