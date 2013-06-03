@@ -40,8 +40,42 @@ var irc = new IRC.Client('irc.mozilla.org', config.nick, {
     channels: getIRCChannelsList()
 });
 
-irc.addListener('error', function(message) {
-    console.log('error: ', message);
+// via https://github.com/mythmon/standup-irc/blob/master/standup-irc.js
+// Connected to IRC server
+irc.on('registered', function(message) {
+    console.info('Connected to IRC server.');
+
+    // Store the nickname assigned by the server
+    config.realNick = message.args[0];
+    console.info('Using nickname: ' + config.realNick);
+});
+
+// via https://github.com/mythmon/standup-irc/blob/master/standup-irc.js
+// Handle errors by dumping them to logging.
+irc.on('error', function(error) {
+    // Error 421 comes up a lot on Mozilla servers, but isn't a problem.
+    if (error.rawCommand !== '421') {
+        return;
+    }
+
+    console.error(error);
+    if (error.hasOwnProperty('stack')) {
+        console.error(error.stack);
+    }
+});
+
+/* Receive, parse, and handle messages from IRC.
+ * - `user`: The nick of the user that send the message.
+ * - `channel`: The channel the message was received in. Note, this might not be
+ * a real channel, because it could be a PM. But this function ignores
+ * those messages anyways.
+ * - `message`: The text of the message sent.
+ */
+irc.on('message', function(user, channel, message){
+    var pingRe = new RegExp('^' + config.realNick + '[:,]? +ping$', 'i');
+    if (pingRe.test(message)) {
+        irc.say(channel, user + ': roger roger.');
+    }
 });
 
 app.use(express.bodyParser());
