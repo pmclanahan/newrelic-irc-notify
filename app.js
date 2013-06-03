@@ -46,10 +46,15 @@ irc.on('registered', function(message) {
     // Store the nickname assigned by the server
     config.realNick = message.args[0];
     console.info('Using nickname: ' + config.realNick);
-    if (config.log_channel) {
-        irc.say(config.log_channel, 'Looks like I picked the wrong week to quit sniffing glue.');
-    }
 });
+
+if (config.log_channel) {
+    irc.on('join' + config.log_channel, function(nick, message){
+        if (nick == config.realNick) {
+            irc.say(config.log_channel, 'Looks like I picked the wrong week to quit sniffing glue');
+        }
+    });
+}
 
 // via https://github.com/mythmon/standup-irc/blob/master/standup-irc.js
 // Handle errors by dumping them to logging.
@@ -77,7 +82,7 @@ irc.on('error', function(error) {
  */
 irc.on('message', function(user, channel, message){
     if (message.toLowerCase().indexOf('surely') !== -1) {
-        irc.say(channel, user + ": don't call me Shirley.");
+        irc.say(channel, user + ": don't call me shirley");
     }
     var cmdRe = new RegExp('^' + config.realNick + '[:,]? +(.*)$', 'i');
     var match = cmdRe.exec(message);
@@ -91,7 +96,7 @@ irc.on('message', function(user, channel, message){
                 irc.say(channel, user + ': see https://github.com/pmclanahan/newrelic-irc-notify#readme');
                 break;
             default:
-                irc.say(channel, user + ': Looks like I picked the wrong week to stop drinking');
+                irc.say(channel, user + ': Looks like I picked the wrong week to quit drinking');
         }
 
     }
@@ -103,7 +108,7 @@ app.post('/', function(req, res) {
     var pingType = req.body.hasOwnProperty('alert') ? 'alert' : 'deployment';
     var data = JSON.parse(req.body[pingType]);
     tellIRC(pingType, data);
-    res.send('Got it. Thanks.');
+    res.send('<html><body><p>Got it. Thanks.</p></body></html>');
 });
 
 app.get('/', function(req, res) {
@@ -136,9 +141,9 @@ function tellIRC(pingType, data) {
                 irc_channels[app_name].types.indexOf(pingType) !== -1) {
             notified = true;
             var message = IRC.colors.wrap(irc_color, 'NR_' + pingType.toUpperCase()) + ': ';
-            message += data.description || data.long_description;
-            if (data.alert_url) {
-                message += '. ' + data.alert_url;
+            message += data.long_description || data.description;
+            if (data[pingType + '_url']) {
+                message += '. ' + data[pingType + '_url'];
             }
             if (config.dev) {
                 irc.say(config.dev_channel, irc_channels[app_name].channels.toString() + ' ' + message);
@@ -154,8 +159,7 @@ function tellIRC(pingType, data) {
     if (!notified) {
         console.log('IGNORED: ' + data.application_name);
         if (config.log_channel) {
-            irc.say(config.log_channel, 'IGNORED: ' + pingType + ' from ' + data.application_name)
-            irc.say(config.log_channel, data.description || data.long_description)
+            irc.say(config.log_channel, 'IGNORED: ' + data.description || data.long_description)
         }
     }
 }
