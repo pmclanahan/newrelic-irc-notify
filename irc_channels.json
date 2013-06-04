@@ -6,5 +6,25 @@
     "basket.mozilla.org": {
         "channels": ["#www"],
         "types": ["alert", "deployment"]
+    },
+    "mozillians.org": {
+        "channels": ["#commtools"],
+        "types": ["alert", "deployment"]
+    },
+    "firefoxflicks.mozilla.org": {
+        "channels": ["#firefoxflicks"],
+        "types": ["alert", "deployment"]
+    },
+    "snippets.mozilla.com": {
+        "channels": ["#snippets"],
+        "types": ["alert", "deployment"]
+    },
+    "support.mozilla.org": {
+        "channels": ["#sumodev"],
+        "types": ["alert", "deployment"]
+    },
+    "input.mozilla.org": {
+        "channels": ["#input"],
+        "types": ["alert", "deployment"]
     }
 }
