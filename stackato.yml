@@ -11,3 +11,5 @@ ignores:
   - local.json*
   - Procfile
   - node_modules
+services:
+  pmac-env-cache: filesystem

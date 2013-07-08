@@ -4,7 +4,7 @@
         "types": ["alert", "deployment"]
     },
     "basket.mozilla.org": {
-        "channels": ["#www"],
+        "channels": ["#newsletter"],
         "types": ["alert", "deployment"]
     },
     "mozillians.org": {
