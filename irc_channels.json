@@ -31,4 +31,8 @@
         "channels": ["#remo-dev"],
         "types": ["alert", "deployment"]
     }
+    "mozillians.org": {
+        "channels": ["#commtools"],
+        "types": ["alert", "deployment"]
+    }
 }
