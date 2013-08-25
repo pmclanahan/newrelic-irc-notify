@@ -26,11 +26,11 @@
     "input.mozilla.org": {
         "channels": ["#input"],
         "types": ["alert", "deployment"]
-    }
+    },
     "reps.mozilla.org": {
         "channels": ["#remo-dev"],
         "types": ["alert", "deployment"]
-    }
+    },
     "mozillians.org": {
         "channels": ["#commtools"],
         "types": ["alert", "deployment"]
