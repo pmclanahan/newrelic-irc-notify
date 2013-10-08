@@ -31,8 +31,8 @@
         "channels": ["#remo-dev"],
         "types": ["alert", "deployment"]
     },
-    "mozillians.org": {
-        "channels": ["#commtools"],
+    "ScrumBugs": {
+        "channels": ["#scrum"],
         "types": ["alert", "deployment"]
     }
 }
