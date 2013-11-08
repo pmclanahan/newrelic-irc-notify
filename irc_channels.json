@@ -31,7 +31,7 @@
         "channels": ["#remo-dev"],
         "types": ["alert", "deployment"]
     },
-    "ScrumBugs": {
+    "scrumbu.gs": {
         "channels": ["#scrum"],
         "types": ["alert", "deployment"]
     }
