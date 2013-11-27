@@ -3,6 +3,26 @@
         "channels": ["#www"],
         "types": ["alert", "deployment"]
     },
+    "www.allizom.org": {
+        "channels": ["#www"],
+        "types": ["alert", "deployment"]
+    },
+    "www-dev.allizom.org": {
+        "channels": ["#www"],
+        "types": ["alert", "deployment"]
+    },
+    "www-demo1.allizom.org": {
+        "channels": ["#www"],
+        "types": ["alert", "deployment"]
+    },
+    "www-demo2.allizom.org": {
+        "channels": ["#www"],
+        "types": ["alert", "deployment"]
+    },
+    "www-demo3.allizom.org": {
+        "channels": ["#www"],
+        "types": ["alert", "deployment"]
+    },
     "basket.mozilla.org": {
         "channels": ["#newsletter"],
         "types": ["alert", "deployment"]
