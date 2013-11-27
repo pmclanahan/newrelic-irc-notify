@@ -142,6 +142,9 @@ function tellIRC(pingType, data) {
                 irc_channels[app_name].types.indexOf(pingType) !== -1) {
             notified = true;
             var message = IRC.colors.wrap(irc_color, 'NR_' + pingType.toUpperCase()) + ': ';
+            if (pingType === 'deployment') {
+                message += '[' + data.application_name + '] ';
+            }
             message += (data.long_description || data.description);
             if (data[pingType + '_url']) {
                 message += '. ' + data[pingType + '_url'];
