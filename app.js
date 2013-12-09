@@ -74,6 +74,13 @@ irc.on('error', function(error) {
     }
 });
 
+// React to users quitting the IRC server
+irc_client.on('quit', function(user) {
+    if (user == config.nick) {
+        irc.send('NICK', config.nick);
+    }
+});
+
 /* Receive, parse, and handle messages from IRC.
  * - `user`: The nick of the user that send the message.
  * - `channel`: The channel the message was received in. Note, this might not be
@@ -83,7 +90,7 @@ irc.on('error', function(error) {
  */
 irc.on('message', function(user, channel, message){
     if (message.toLowerCase().indexOf('surely') !== -1) {
-        irc.say(channel, user + ": don't call me shirley");
+        irc.say(channel, user + ": don't call me Shirley");
     }
     var cmdRe = new RegExp('^' + config.realNick + '[:,]? +(.*)$', 'i');
     var match = cmdRe.exec(message);
