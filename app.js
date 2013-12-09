@@ -161,9 +161,10 @@ function tellIRC(pingType, data) {
         }
     }
     if (!notified) {
-        console.log('IGNORED: ' + data.application_name);
+        var message = 'IGNORED: [' + data.application_name + '] ' + (data.long_description || data.description);
+        console.log(message);
         if (config.log_channel) {
-            irc.say(config.log_channel, 'IGNORED: ' + (data.long_description || data.description));
+            irc.say(config.log_channel, message);
         }
     }
 }
