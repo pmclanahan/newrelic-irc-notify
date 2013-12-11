@@ -75,7 +75,7 @@ irc.on('error', function(error) {
 });
 
 // React to users quitting the IRC server
-irc_client.on('quit', function(user) {
+irc.on('quit', function(user) {
     if (user == config.nick) {
         irc.send('NICK', config.nick);
     }
