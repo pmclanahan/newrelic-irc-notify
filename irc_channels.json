@@ -31,6 +31,14 @@
         "channels": ["#commtools"],
         "types": ["alert", "deployment"]
     },
+    "mozillians.allizom.org": {
+        "channels": ["#commtools"],
+        "types": ["alert", "deployment"]
+    },
+    "mozillians-dev.allizom.org": {
+        "channels": ["#commtools"],
+        "types": ["alert", "deployment"]
+    },
     "firefoxflicks.mozilla.org": {
         "channels": ["#firefoxflicks"],
         "types": ["alert", "deployment"]
