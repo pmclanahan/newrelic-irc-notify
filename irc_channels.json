@@ -59,6 +59,14 @@
         "channels": ["#remo-dev"],
         "types": ["alert", "deployment"]
     },
+    "nucleus.mozilla.org": {
+        "channels": ["#nucleus"],
+        "types": ["alert", "deployment"]
+    },
+    "nucleus.paas.allizom.org": {
+        "channels": ["#nucleus"],
+        "types": ["alert", "deployment"]
+    },
     "scrumbu.gs": {
         "channels": ["#scrum"],
         "types": ["alert", "deployment"]
