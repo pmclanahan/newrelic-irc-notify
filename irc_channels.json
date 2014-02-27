@@ -62,5 +62,9 @@
     "scrumbu.gs": {
         "channels": ["#scrum"],
         "types": ["alert", "deployment"]
+    },
+    "developer.mozilla.org": {
+        "channels": ["#mdndev"],
+        "types": ["alert", "deployment"]
     }
 }
