@@ -38,6 +38,17 @@ var irc = new IRC.Client('irc.mozilla.org', config.nick, {
     realName: 'New Relic IRC Notification Bot',
     channels: getIRCChannelsList()
 });
+var mccroskey = [
+  'sniffing glue',
+  'smoking',
+  'drinking',
+  'amphetamines'
+];
+
+function getMcCroskey() {
+  var vice = mccroskey[Math.floor(Math.random() * mccroskey.length)];
+  return 'Looks like I picked the wrong week to quit ' + vice + '!';
+}
 
 // via https://github.com/mythmon/standup-irc/blob/master/standup-irc.js
 // Connected to IRC server
@@ -52,7 +63,7 @@ irc.on('registered', function(message) {
 if (config.log_channel) {
     irc.on('join' + config.log_channel, function(nick, message){
         if (nick == config.realNick) {
-            irc.say(config.log_channel, 'Looks like I picked the wrong week to quit sniffing glue');
+            irc.say(config.log_channel, getMcCroskey());
         }
     });
 }
@@ -104,7 +115,7 @@ irc.on('message', function(user, channel, message){
                 irc.say(channel, user + ': see https://github.com/pmclanahan/newrelic-irc-notify#readme');
                 break;
             default:
-                irc.say(channel, user + ': Looks like I picked the wrong week to quit drinking');
+                irc.say(channel, user + ': ' + getMcCroskey());
         }
 
     }
