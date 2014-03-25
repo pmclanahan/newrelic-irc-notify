@@ -23,6 +23,14 @@
         "channels": ["#www"],
         "types": ["alert", "deployment"]
     },
+    "www-demo4.allizom.org": {
+        "channels": ["#www"],
+        "types": ["alert", "deployment"]
+    },
+    "www-demo5.allizom.org": {
+        "channels": ["#www"],
+        "types": ["alert", "deployment"]
+    },
     "basket.mozilla.org": {
         "channels": ["#newsletter"],
         "types": ["alert", "deployment"]
