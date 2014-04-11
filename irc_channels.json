@@ -79,6 +79,14 @@
         "channels": ["#scrum"],
         "types": ["alert", "deployment"]
     },
+    "webwewant.allizom.org": {
+        "channels": ["#glow"],
+        "types": ["alert", "deployment"]
+    },
+    "webwewant.mozilla.org": {
+        "channels": ["#glow"],
+        "types": ["alert", "deployment"]
+    },
     "developer.mozilla.org": {
         "channels": ["#mdndev"],
         "types": ["alert", "deployment"]
