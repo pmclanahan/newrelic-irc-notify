@@ -17,6 +17,7 @@
 'use strict';
 
 var express = require('express');
+var bodyParser = require('body-parser');
 var irc_channels = require('./irc_channels.json');
 var nconf = require('nconf');
 var IRC = require('irc');
@@ -121,7 +122,7 @@ irc.on('message', function(user, channel, message){
     }
 });
 
-app.use(express.bodyParser());
+app.use(bodyParser());
 
 app.post('/', function(req, res) {
     var pingType = req.body.hasOwnProperty('alert') ? 'alert' : 'deployment';

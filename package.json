@@ -25,8 +25,9 @@
     "bugs": "https://github.com/pmclanahan/newrelic-irc-notify/issues",
     "homepage": "https://github.com/pmclanahan/newrelic-irc-notify/",
     "dependencies": {
-        "express": "3.1.1",
+        "express": "4.1.1",
         "irc": "~0.3.6",
-        "nconf": "~0.6.7"
+        "nconf": "~0.6.9",
+        "body-parser": "1.0.2"
     }
 }
