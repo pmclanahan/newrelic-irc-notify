@@ -155,27 +155,29 @@ function getIRCChannelsList() {
 function tellIRC(pingType, data) {
     var irc_color = pingType === 'alert' ? 'light_red' : 'light_green';
     var notified = false;
-    for (var app_name in irc_channels) {
-        if (data.application_name.indexOf(app_name) !== -1 &&
-                irc_channels[app_name].types.indexOf(pingType) !== -1) {
-            notified = true;
-            var message = IRC.colors.wrap(irc_color, 'NR_' + pingType.toUpperCase()) + ': ';
-            if (pingType === 'deployment') {
-                message += '[' + data.application_name + '] ';
-            }
-            message += (data.long_description || data.description);
-            if (data[pingType + '_url']) {
-                message += '. ' + data[pingType + '_url'];
-            }
-            if (config.dev) {
-                irc.say(config.dev_channel, irc_channels[app_name].channels.toString() + ' ' + message);
-            }
-            else {
-                irc_channels[app_name].channels.forEach(function(channel) {
-                    irc.say(channel, message);
-                });
-            }
+    if (data.application_name !== undefined) {
+        for (var app_name in irc_channels) {
+            if (data.application_name.indexOf(app_name) !== -1 &&
+                    irc_channels[app_name].types.indexOf(pingType) !== -1) {
+                notified = true;
+                var message = IRC.colors.wrap(irc_color, 'NR_' + pingType.toUpperCase()) + ': ';
+                if (pingType === 'deployment') {
+                    message += '[' + data.application_name + '] ';
+                }
+                message += (data.long_description || data.description);
+                if (data[pingType + '_url']) {
+                    message += '. ' + data[pingType + '_url'];
+                }
+                if (config.dev) {
+                    irc.say(config.dev_channel, irc_channels[app_name].channels.toString() + ' ' + message);
+                }
+                else {
+                    irc_channels[app_name].channels.forEach(function(channel) {
+                        irc.say(channel, message);
+                    });
+                }
 
+            }
         }
     }
     if (!notified) {
