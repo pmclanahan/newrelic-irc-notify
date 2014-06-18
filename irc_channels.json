@@ -1,4 +1,8 @@
 {
+    "communityit-discourse-production": {
+        "channels": ["#communityit"],
+        "types": ["alert"]
+    },
     "www.mozilla.org": {
         "channels": ["#www"],
         "types": ["alert", "deployment"]
