@@ -156,16 +156,25 @@ function getIRCChannelsList() {
 function tellIRC(pingType, data) {
     var irc_color = pingType === 'alert' ? 'light_red' : 'light_green';
     var notified = false;
-    if (data.application_name !== undefined) {
+    var application_name = data.application_name;
+    var description = data.long_description || data.short_description;
+    if (application_name === undefined) {
+        var re = /Apps currently involved:\s+([a-z0-9-_.]+)/i;
+        var matches = re.exec(description);
+        if (matches) {
+            application_name = matches[1];
+        }
+    }
+    if (application_name !== undefined) {
         for (var app_name in irc_channels) {
-            if (data.application_name.indexOf(app_name) !== -1 &&
+            if (application_name.indexOf(app_name) !== -1 &&
                     irc_channels[app_name].types.indexOf(pingType) !== -1) {
                 notified = true;
                 var message = IRC.colors.wrap(irc_color, 'NR_' + pingType.toUpperCase()) + ': ';
                 if (pingType === 'deployment') {
-                    message += '[' + data.application_name + '] ';
+                    message += '[' + application_name + '] ';
                 }
-                message += (data.long_description || data.description);
+                message += description;
                 if (data[pingType + '_url']) {
                     message += '. ' + data[pingType + '_url'];
                 }
@@ -182,7 +191,7 @@ function tellIRC(pingType, data) {
         }
     }
     if (!notified) {
-        var message = 'IGNORED: [' + data.application_name + '] ' + (data.long_description || data.description);
+        var message = 'IGNORED: [' + application_name + '] ' + description;
         console.log(message);
         if (config.log_channel) {
             irc.say(config.log_channel, message);
