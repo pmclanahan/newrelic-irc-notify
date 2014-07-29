@@ -157,7 +157,7 @@ function tellIRC(pingType, data) {
     var irc_color = pingType === 'alert' ? 'light_red' : 'light_green';
     var notified = false;
     var application_name = data.application_name;
-    var description = data.long_description || data.short_description;
+    var description = data.long_description || data.short_description || data.description;
     if (application_name === undefined) {
         var re = /Apps currently involved:\s+([a-z0-9-_.]+)/i;
         var matches = re.exec(description);
