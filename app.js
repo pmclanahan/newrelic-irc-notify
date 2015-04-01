@@ -22,12 +22,12 @@ var irc_channels = require('./irc_channels.json');
 var nconf = require('nconf');
 var IRC = require('irc');
 
-nconf.argv().env();
 nconf.defaults({
-    PORT: 3000,
+    PORT: 5000,
     nick: 'vectorvictor',
     dev: false
 });
+nconf.argv().env();
 
 var config = nconf.get();
 

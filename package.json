@@ -2,6 +2,9 @@
     "name": "newrelic-irc-notify",
     "description": "Notify IRC when New Relic posts an event.",
     "version": "0.0.2",
+    "engines": {
+        "node": "0.12.x"
+    },
     "private": true,
     "maintainers": [
         {
