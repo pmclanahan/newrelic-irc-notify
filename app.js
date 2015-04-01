@@ -122,7 +122,7 @@ irc.on('message', function(user, channel, message){
     }
 });
 
-app.use(bodyParser());
+app.use(bodyParser.json());
 
 app.post('/', function(req, res) {
     var pingType = req.body.hasOwnProperty('alert') ? 'alert' : 'deployment';
