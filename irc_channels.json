@@ -63,10 +63,6 @@
         "channels": ["#sumodev"],
         "types": ["alert", "deployment"]
     },
-    "input.mozilla.org": {
-        "channels": ["#input"],
-        "types": ["alert", "deployment"]
-    },
     "reps.mozilla.org": {
         "channels": ["#remo-dev"],
         "types": ["alert", "deployment"]
