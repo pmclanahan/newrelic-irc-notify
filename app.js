@@ -101,9 +101,6 @@ irc.on('quit', function(user) {
  * - `message`: The text of the message sent.
  */
 irc.on('message', function(user, channel, message){
-    if (message.toLowerCase().indexOf('surely') !== -1) {
-        irc.say(channel, user + ": don't call me Shirley");
-    }
     var cmdRe = new RegExp('^' + config.realNick + '[:,]? +(.*)$', 'i');
     var match = cmdRe.exec(message);
     if (match) {
