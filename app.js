@@ -209,6 +209,9 @@ function tellIRC(pingType, data) {
     everything_msg += description;
     irc_channels['everything'].forEach(function (channel) {
         irc.say(channel, everything_msg);
+        if (data.alert_url) {
+            irc.say(channel, data.alert_url);
+        }
     });
 }
 
