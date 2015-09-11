@@ -91,6 +91,7 @@ irc.on('error', function(error) {
 irc.on('quit', function(user) {
     if (user == config.nick) {
         irc.send('NICK', config.nick);
+        config.realNick = config.nick;
     }
 });
 
