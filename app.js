@@ -197,9 +197,18 @@ function tellIRC(pingType, data) {
             irc.say(config.log_channel, message);
         }
     }
+
     // tell the everything channels everything
+    var everything_msg = IRC.colors.wrap('light_red', 'NR_ALERT') + ': ';
+    if (application_name) {
+        everything_msg += '[' + IRC.colors.wrap('light_blue', application_name) + '] ';
+    }
+    if (data.servers) {
+        everything_msg += '[' + IRC.colors.wrap('light_blue', data.servers.join(', ')) + '] ';
+    }
+    everything_msg += description;
     irc_channels['everything'].forEach(function (channel) {
-        irc.say(channel, description);
+        irc.say(channel, everything_msg);
     });
 }
 
