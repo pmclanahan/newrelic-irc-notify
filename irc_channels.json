@@ -1,94 +1,100 @@
 {
-    "communityit-discourse-production": {
-        "channels": ["#communityit"],
-        "types": ["alert"]
-    },
-    "www.mozilla.org": {
-        "channels": ["#www"],
-        "types": ["alert", "deployment"]
-    },
-    "www.allizom.org": {
-        "channels": ["#www"],
-        "types": ["alert", "deployment"]
-    },
-    "www-dev.allizom.org": {
-        "channels": ["#www"],
-        "types": ["alert", "deployment"]
-    },
-    "www-demo1.allizom.org": {
-        "channels": ["#www"],
-        "types": ["alert", "deployment"]
-    },
-    "www-demo2.allizom.org": {
-        "channels": ["#www"],
-        "types": ["alert", "deployment"]
-    },
-    "www-demo3.allizom.org": {
-        "channels": ["#www"],
-        "types": ["alert", "deployment"]
-    },
-    "www-demo4.allizom.org": {
-        "channels": ["#www"],
-        "types": ["alert", "deployment"]
-    },
-    "www-demo5.allizom.org": {
-        "channels": ["#www"],
-        "types": ["alert", "deployment"]
-    },
-    "basket.mozilla.org": {
-        "channels": ["#basket"],
-        "types": ["alert", "deployment"]
-    },
-    "mozillians.org": {
-        "channels": ["#commtools"],
-        "types": ["alert", "deployment"]
-    },
-    "mozillians.allizom.org": {
-        "channels": ["#commtools"],
-        "types": ["alert", "deployment"]
-    },
-    "mozillians-dev.allizom.org": {
-        "channels": ["#commtools"],
-        "types": ["alert", "deployment"]
-    },
-    "firefoxflicks.mozilla.org": {
-        "channels": ["#firefoxflicks"],
-        "types": ["alert", "deployment"]
-    },
-    "snippets.mozilla.com": {
-        "channels": ["#snippets"],
-        "types": ["alert", "deployment"]
-    },
-    "support.mozilla.org": {
-        "channels": ["#sumodev"],
-        "types": ["alert", "deployment"]
-    },
-    "reps.mozilla.org": {
-        "channels": ["#remo-dev"],
-        "types": ["alert", "deployment"]
-    },
-    "nucleus.mozilla.org": {
-        "channels": ["#nucleus"],
-        "types": ["alert", "deployment"]
-    },
-    "nucleus.paas.allizom.org": {
-        "channels": ["#nucleus"],
-        "types": ["alert", "deployment"]
-    },
-    "scrumbu.gs": {
-        "channels": ["#scrum"],
-        "types": ["alert", "deployment"]
-    },
-    "webwewant.allizom.org": {
-        "channels": ["#glow"],
-        "types": ["alert", "deployment"]
-    },
-    "webwewant.mozilla.org": {
-        "channels": ["#glow"],
-        "types": ["alert", "deployment"]
-    },
-    "developer.mozilla.org": {
-        "channels": ["#mdndev"],
-        "types": ["alert", "deployment"]
+    "everything": [
+        "#w0ts0n"
+    ],
+    "apps": {
+        "communityit-discourse-production": {
+            "channels": ["#communityit"],
+            "types": ["alert"]
+        },
+        "www.mozilla.org": {
+            "channels": ["#www"],
+            "types": ["alert", "deployment"]
+        },
+        "www.allizom.org": {
+            "channels": ["#www"],
+            "types": ["alert", "deployment"]
+        },
+        "www-dev.allizom.org": {
+            "channels": ["#www"],
+            "types": ["alert", "deployment"]
+        },
+        "www-demo1.allizom.org": {
+            "channels": ["#www"],
+            "types": ["alert", "deployment"]
+        },
+        "www-demo2.allizom.org": {
+            "channels": ["#www"],
+            "types": ["alert", "deployment"]
+        },
+        "www-demo3.allizom.org": {
+            "channels": ["#www"],
+            "types": ["alert", "deployment"]
+        },
+        "www-demo4.allizom.org": {
+            "channels": ["#www"],
+            "types": ["alert", "deployment"]
+        },
+        "www-demo5.allizom.org": {
+            "channels": ["#www"],
+            "types": ["alert", "deployment"]
+        },
+        "basket.mozilla.org": {
+            "channels": ["#basket"],
+            "types": ["alert", "deployment"]
+        },
+        "mozillians.org": {
+            "channels": ["#commtools"],
+            "types": ["alert", "deployment"]
+        },
+        "mozillians.allizom.org": {
+            "channels": ["#commtools"],
+            "types": ["alert", "deployment"]
+        },
+        "mozillians-dev.allizom.org": {
+            "channels": ["#commtools"],
+            "types": ["alert", "deployment"]
+        },
+        "firefoxflicks.mozilla.org": {
+            "channels": ["#firefoxflicks"],
+            "types": ["alert", "deployment"]
+        },
+        "snippets.mozilla.com": {
+            "channels": ["#snippets"],
+            "types": ["alert", "deployment"]
+        },
+        "support.mozilla.org": {
+            "channels": ["#sumodev"],
+            "types": ["alert", "deployment"]
+        },
+        "reps.mozilla.org": {
+            "channels": ["#remo-dev"],
+            "types": ["alert", "deployment"]
+        },
+        "nucleus.mozilla.org": {
+            "channels": ["#nucleus"],
+            "types": ["alert", "deployment"]
+        },
+        "nucleus.paas.allizom.org": {
+            "channels": ["#nucleus"],
+            "types": ["alert", "deployment"]
+        },
+        "scrumbu.gs": {
+            "channels": ["#scrum"],
+            "types": ["alert", "deployment"]
+        },
+        "webwewant.allizom.org": {
+            "channels": ["#glow"],
+            "types": ["alert", "deployment"]
+        },
+        "webwewant.mozilla.org": {
+            "channels": ["#glow"],
+            "types": ["alert", "deployment"]
+        },
+        "developer.mozilla.org": {
+            "channels": ["#mdndev"],
+            "types": ["alert", "deployment"]
+        }
     }
+
 }

@@ -45,6 +45,7 @@ var mccroskey = [
   'drinking',
   'amphetamines'
 ];
+var app_channels = irc_channels['apps'];
 
 function getMcCroskey() {
   var vice = mccroskey[Math.floor(Math.random() * mccroskey.length)];
@@ -140,13 +141,14 @@ function getIRCChannelsList() {
     else if (config.log_channel) {
         channels.push(config.log_channel);
     }
-    for (var site in irc_channels) {
-        irc_channels[site].channels.forEach(function(channel) {
+    for (var site in app_channels) {
+        app_channels[site].channels.forEach(function(channel) {
             if (channels.indexOf(channel) === -1) {
                 channels.push(channel);
             }
         })
     }
+    channels = channels.concat(irc_channels['everything']);
     return channels;
 }
 
@@ -163,9 +165,9 @@ function tellIRC(pingType, data) {
         }
     }
     if (application_name !== undefined) {
-        for (var app_name in irc_channels) {
+        for (var app_name in app_channels) {
             if (application_name.indexOf(app_name) !== -1 &&
-                    irc_channels[app_name].types.indexOf(pingType) !== -1) {
+                    app_channels[app_name].types.indexOf(pingType) !== -1) {
                 notified = true;
                 var message = IRC.colors.wrap(irc_color, 'NR_' + pingType.toUpperCase()) + ': ';
                 if (pingType === 'deployment') {
@@ -176,10 +178,10 @@ function tellIRC(pingType, data) {
                     message += '. ' + data[pingType + '_url'];
                 }
                 if (config.dev) {
-                    irc.say(config.dev_channel, irc_channels[app_name].channels.toString() + ' ' + message);
+                    irc.say(config.dev_channel, app_channels[app_name].channels.toString() + ' ' + message);
                 }
                 else {
-                    irc_channels[app_name].channels.forEach(function(channel) {
+                    app_channels[app_name].channels.forEach(function(channel) {
                         irc.say(channel, message);
                     });
                 }
@@ -194,6 +196,10 @@ function tellIRC(pingType, data) {
             irc.say(config.log_channel, message);
         }
     }
+    // tell the everything channels everything
+    irc_channels['everything'].forEach(function (channel) {
+        irc.say(channel, description);
+    });
 }
 
 if (!module.parent) {
