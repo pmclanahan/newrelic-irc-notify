@@ -30,6 +30,7 @@ nconf.defaults({
 nconf.argv().env();
 
 var config = nconf.get();
+var app_channels = irc_channels['apps'];
 
 var app = express();
 var irc = new IRC.Client('irc.mozilla.org', config.nick, {
@@ -45,7 +46,6 @@ var mccroskey = [
   'drinking',
   'amphetamines'
 ];
-var app_channels = irc_channels['apps'];
 
 function getMcCroskey() {
   var vice = mccroskey[Math.floor(Math.random() * mccroskey.length)];
