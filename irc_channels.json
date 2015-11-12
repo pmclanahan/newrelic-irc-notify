@@ -8,39 +8,39 @@
             "types": ["alert"]
         },
         "www.mozilla.org": {
-            "channels": ["#www"],
+            "channels": ["#ee-infra"],
             "types": ["alert", "deployment"]
         },
         "www.allizom.org": {
-            "channels": ["#www"],
+            "channels": ["#ee-infra"],
             "types": ["alert", "deployment"]
         },
         "www-dev.allizom.org": {
-            "channels": ["#www"],
+            "channels": ["#ee-infra"],
             "types": ["alert", "deployment"]
         },
         "www-demo1.allizom.org": {
-            "channels": ["#www"],
+            "channels": ["#ee-infra"],
             "types": ["alert", "deployment"]
         },
         "www-demo2.allizom.org": {
-            "channels": ["#www"],
+            "channels": ["#ee-infra"],
             "types": ["alert", "deployment"]
         },
         "www-demo3.allizom.org": {
-            "channels": ["#www"],
+            "channels": ["#ee-infra"],
             "types": ["alert", "deployment"]
         },
         "www-demo4.allizom.org": {
-            "channels": ["#www"],
+            "channels": ["#ee-infra"],
             "types": ["alert", "deployment"]
         },
         "www-demo5.allizom.org": {
-            "channels": ["#www"],
+            "channels": ["#ee-infra"],
             "types": ["alert", "deployment"]
         },
         "basket.mozilla.org": {
-            "channels": ["#basket"],
+            "channels": ["#ee-infra"],
             "types": ["alert", "deployment"]
         },
         "mozillians.org": {
@@ -72,23 +72,19 @@
             "types": ["alert", "deployment"]
         },
         "nucleus.mozilla.org": {
-            "channels": ["#nucleus"],
+            "channels": ["#ee-infra"],
             "types": ["alert", "deployment"]
         },
         "nucleus.paas.allizom.org": {
-            "channels": ["#nucleus"],
-            "types": ["alert", "deployment"]
-        },
-        "scrumbu.gs": {
-            "channels": ["#scrum"],
+            "channels": ["#ee-infra"],
             "types": ["alert", "deployment"]
         },
         "webwewant.allizom.org": {
-            "channels": ["#glow"],
+            "channels": ["#ee-infra"],
             "types": ["alert", "deployment"]
         },
         "webwewant.mozilla.org": {
-            "channels": ["#glow"],
+            "channels": ["#ee-infra"],
             "types": ["alert", "deployment"]
         },
         "developer.mozilla.org": {
