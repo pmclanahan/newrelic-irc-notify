@@ -11,6 +11,22 @@
             "channels": ["#ee-infra"],
             "types": ["alert", "deployment"]
         },
+        "bedrock-prod-us-west": {
+            "channels": ["#ee-infra"],
+            "types": ["alert", "deployment"]
+        },
+        "bedrock-prod-eu-west": {
+            "channels": ["#ee-infra"],
+            "types": ["alert", "deployment"]
+        },
+        "bedrock-stage-us-west": {
+            "channels": ["#ee-infra"],
+            "types": ["alert", "deployment"]
+        },
+        "bedrock-stage-eu-west": {
+            "channels": ["#ee-infra"],
+            "types": ["alert", "deployment"]
+        },
         "www.allizom.org": {
             "channels": ["#ee-infra"],
             "types": ["alert", "deployment"]
