@@ -59,6 +59,22 @@
             "channels": ["#ee-infra"],
             "types": ["alert", "deployment"]
         },
+        "basket-stage-us-west": {
+            "channels": ["#ee-infra"],
+            "types": ["alert", "deployment"]
+        },
+        "basket-prod-us-west": {
+            "channels": ["#ee-infra"],
+            "types": ["alert", "deployment"]
+        },
+        "basket-stage-eu-west": {
+            "channels": ["#ee-infra"],
+            "types": ["alert", "deployment"]
+        },
+        "basket-prod-eu-west": {
+            "channels": ["#ee-infra"],
+            "types": ["alert", "deployment"]
+        },
         "mozillians.org": {
             "channels": ["#commtools"],
             "types": ["alert", "deployment"]
